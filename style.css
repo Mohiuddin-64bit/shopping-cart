@@ -15,7 +15,7 @@ body{
 	padding: 15px 20px;
 	margin-bottom: 20px;
 }
-.center-item{
+.center-item{	
     display: flex;
     align-items: center;
     justify-content: flex-start;

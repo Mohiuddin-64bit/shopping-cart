@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="minus-btn" class="btn btn-default"><i class="fas fa-minus"></i></button> <!--Minus button-->
+                           <button onclick="handleProductCount('phone', false)" class="btn btn-default"><i class="fas fa-minus"></i></button> <!--Minus button-->
                            <input id="phone-number" type="text" class="form-control text-center" value="1">
-                           <button id="plus-btn" class="btn btn-default"><i class="fas fa-plus"></i></button> <!--plus button-->
+                           <button onclick="handleProductCount('phone', true)" class="btn btn-default"><i class="fas fa-plus"></i></button> <!--plus button-->
                         </div>
-                        <h5>$1219</h5>
+                        <h5 id="phone-total">$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,9 +43,9 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button onclick="handleProductChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <button onclick="handleProductCount('case', false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                            <input id="case-number" type="text" class="form-control text-center" value="1">
-                           <button onclick="handleProductChange(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handleProductCount('case', true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5 id="case-total">$59</h5>
@@ -78,24 +78,33 @@
       </div>
    </section>
    <script>
-      //quantity increase.
+      //quantity increase & decrease.
 
-      function handleProductChange(isIncrease){
-         const caseInput = document.getElementById('case-number');
-         const caseCount = parseInt(caseInput.value);
-         let caseNewCount = caseCount;
+      function handleProductCount(product, isIncrease){
+         const productInput = document.getElementById(product + '-number');
+         const productCount = parseInt(productInput.value);
+         let productNewCount = productCount;
          if(isIncrease == true){
-            caseNewCount = caseCount + 1;
+            productNewCount = productCount + 1;
          }
-         if(isIncrease == false && caseCount > 0){
-            caseNewCount = caseCount - 1;
+         if(isIncrease == false && productNewCount > 0){
+            productNewCount = productCount - 1;
          }
-         // const caseNewCount = caseCount - 1;
-         caseInput.value = caseNewCount;
-         const caseTotal = caseNewCount * 59;
-         document.getElementById('case-total').innerText = '$' + caseTotal;
+         productInput.value = productNewCount;
+         let productTotal = 0;
+         if(product == 'phone'){
+            productTotal = productNewCount * 1219;
+         }
+         if(product == 'case'){
+            productTotal = productNewCount * 59;
+         }
+         document.getElementById(product + '-total').innerText = '$' + productTotal;
       };
-      
+
+
+
+
+
 
    </script>
 
